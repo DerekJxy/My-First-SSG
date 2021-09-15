@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const path = require("path");
 let fs = require('fs');
 
 let argv = require('yargs/yargs')(process.argv.slice(2))
@@ -49,7 +50,7 @@ if(stats.isDirectory()){
     console.log("File name: ", file);
     fs.readFile(argv.input + "/"+ file.toString(), 'utf-8', function(err, fullText){
       if(err) return console.log(err);
-
+      let fname = path.parse(file).name;
       let t = fullText.split(/\r?\n\r?\n/);
       //console.log("Title is :", t[0]);
       let content = t.slice(1,t.length);
@@ -63,7 +64,7 @@ if(stats.isDirectory()){
        `<body>\n` + `<div class = "container">\n`+`<h1>${t[0]} </h1>\n` + `${html}` + `</div>\n</body>\n` +
        `<footer> \n ${footer}\n</footer>\n</html>`;
 
-    fs.writeFile(`./dist/${file.split(".")[0]}.html`, tempHtml, err=>{
+    fs.writeFile(`./dist/${fname}.html`, tempHtml, err=>{
       if(err) throw err;
       });
     })
@@ -74,7 +75,8 @@ if(stats.isDirectory()){
 else{ 
   fs.readFile(argv.input, 'utf8', function(err, fullText){
       if(err) return console.log(err);
-     
+
+      let fname = argv.input.split(".");
       let t = fullText.split(/\r?\n\r?\n/);
       //console.log("Title is :", t[0]);
       let content = t.slice(1,t.length);
@@ -88,7 +90,7 @@ else{
       `<body>\n` + `<div class = "container">\n`+`<h1>${t[0]} </h1>\n` + `${html}` + `</div>\n</body>\n` +
       `<footer> \n ${footer}\n</footer>\n</html>`;
 
-      fs.writeFile(`./dist/${argv.input}.html`, tempHtml, err=>{
+      fs.writeFile(`./dist/${fname}.html`, tempHtml, err=>{
         if(err) throw err;
         console.log('The HTML file has been saved to ./dist!');  
       });
