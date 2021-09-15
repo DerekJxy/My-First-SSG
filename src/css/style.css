@@ -1,0 +1,24 @@
+footer {
+    background-color: navy;
+    color: #ffffff;
+    height: 2.5em;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+.container {
+    width: 75%;
+    margin: auto;
+}
+
+p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+main{
+    text-align: center;
+   font-size: 30px;
+}
