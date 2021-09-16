@@ -32,7 +32,7 @@ Options:
  
  ` -o, --output                           [string] [required] [default: "./dist"]`
  
- # Index HTML
+ # Index HTML(DEMO)
  [My-First-SSG-Example](https://derekjxy.github.io/My-First-SSG/)
  
  # License
