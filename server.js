@@ -27,6 +27,7 @@ let argv = require('yargs/yargs')(process.argv.slice(2))
 console.log("argv Input:", argv.input);
 console.log("argv Onput:", argv.output);
 
+// Check ./dist folder
 if(fs.existsSync("./dist")){
     fs.rmdirSync("./dist",{recursive: true} , err=>{
       if(err) throw err;
@@ -41,13 +42,21 @@ else{
   });
 }
 
+//Define variables
 let stats = fs.statSync(argv.input);
 let tempHtml;
 let footer = '<p class="center">© 2021 OSD600 Seneca</p>';
+let fileType ='';
 
 if(stats.isDirectory()){
   fs.readdirSync(argv.input).forEach(file =>{
+
+    //Display all the files in the directory
     console.log("File name: ", file);
+    fileType = file.split('.').pop(); 
+
+    //Only convert the .txt file into a HTML file
+    if(fileType == 'txt'){
     fs.readFile(argv.input + "/"+ file.toString(), 'utf-8', function(err, fullText){
       if(err) return console.log(err);
       let fname = path.parse(file).name;
@@ -59,20 +68,29 @@ if(stats.isDirectory()){
             `<p>${para.replace(/\r?\n/, ' ')}</p> </br>`
           ).join(' ');
 
+      //HTML
       tempHtml = `<!doctype html>\n` + `<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>${t[0]}</title>\n` +
        `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
        `<body>\n` + `<div class = "container">\n`+`<h1>${t[0]} </h1>\n` + `${html}` + `</div>\n</body>\n` +
        `<footer> \n ${footer}\n</footer>\n</html>`;
-
+    
+    //Write file
     fs.writeFile(`./dist/${fname}.html`, tempHtml, err=>{
       if(err) throw err;
       });
-    })
+     })
+    }
+
   })
   console.log('The HTML files have been saved to ./dist!');  
 }
 
-else{ 
+else{
+  fileType = argv.input.split('.').pop(); 
+  //console.log(fileType);
+
+  //Only convert the .txt file into a HTML file
+  if(fileType == 'txt'){
   fs.readFile(argv.input, 'utf8', function(err, fullText){
       if(err) return console.log(err);
 
@@ -85,14 +103,22 @@ else{
             `<p>${para.replace(/\r?\n/, ' ')}</p> </br>`
           ).join(' ');
           
+      //HTML   
       tempHtml = `<!doctype html>\n` + `<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>${t[0]}</title>\n` +
       `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
       `<body>\n` + `<div class = "container">\n`+`<h1>${t[0]} </h1>\n` + `${html}` + `</div>\n</body>\n` +
       `<footer> \n ${footer}\n</footer>\n</html>`;
 
+       //Write file
       fs.writeFile(`./dist/${fname}.html`, tempHtml, err=>{
         if(err) throw err;
         console.log('The HTML file has been saved to ./dist!');  
       });
-  });
+    });
+  }
+
+  else{
+    fileType = 'Sorry, only .txt file allowed! Please try again!'
+    console.log(fileValidation);
+  }
 }
