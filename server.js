@@ -60,6 +60,9 @@ if(stats.isDirectory()){
     fs.readFile(argv.input + "/"+ file.toString(), 'utf-8', function(err, fullText){
       if(err) return console.log(err);
       let fname = path.parse(file).name;
+      //name the file without space
+      let validFname = fname.split(' ').join('');
+
       let t = fullText.split(/\r?\n\r?\n/);
       //console.log("Title is :", t[0]);
       let content = t.slice(1,t.length);
@@ -75,7 +78,7 @@ if(stats.isDirectory()){
        `<footer> \n ${footer}\n</footer>\n</html>`;
     
     //Write file
-    fs.writeFile(`./dist/${fname}.html`, tempHtml, err=>{
+    fs.writeFile(`./dist/${validFname}.html`, tempHtml, err=>{
       if(err) throw err;
       });
      })
@@ -95,6 +98,9 @@ else{
       if(err) return console.log(err);
 
       let fname = argv.input.split(".");
+      //console.log(fname) //[ 'Silver Blaze', 'txt' ]
+      let validFname = fname[0].split(' ').join('');
+
       let t = fullText.split(/\r?\n\r?\n/);
       //console.log("Title is :", t[0]);
       let content = t.slice(1,t.length);
@@ -110,7 +116,9 @@ else{
       `<footer> \n ${footer}\n</footer>\n</html>`;
 
        //Write file
-      fs.writeFile(`./dist/${fname}.html`, tempHtml, err=>{
+
+      //console.log(validFname);
+      fs.writeFile(`./dist/${validFname}.html`, tempHtml, err=>{
         if(err) throw err;
         console.log('The HTML file has been saved to ./dist!');  
       });
