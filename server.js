@@ -127,6 +127,6 @@ else{
 
   else{
     fileType = 'Sorry, only .txt file allowed! Please try again!'
-    console.log(fileValidation);
+    console.log(fileType);
   }
 }
