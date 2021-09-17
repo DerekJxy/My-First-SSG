@@ -14,7 +14,7 @@ __For Example:__
 
 After installation of yargs. You can simply run the program by the command:
 
-`node server.js -i '.\Silver Blaze.txt'`
+`node server.js -i 'Silver Blaze.txt'`
 
 Which will generate a __HTML__ file for the __'Silver Blaze.txt'__ file into the __/dist__ folder.
 
@@ -32,6 +32,10 @@ Options:
  
  ` -o, --output                           [string] [required] [default: "./dist"]`
  
+ # Optional Features
+ + Get the __title__ of the _.txt file_ and put the __name of the title__ into`<title></title>`, also put it into `<h1></h1>` that inside `<body>`
+ 
+ + `<footer><p class="center">© 2021 OSD600 Seneca</p></footer>`
  # Index HTML(DEMO)
  [My-First-SSG-Example](https://derekjxy.github.io/My-First-SSG/)
  
