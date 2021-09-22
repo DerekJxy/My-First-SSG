@@ -41,9 +41,9 @@ Options:
  
 # Optional Features
  
- + Get the __title__ of the _.txt file_ and put the __name of the title__ into`<title></title>`, also put it into `<h1></h1>` that inside `<body>`
+ + Get the __title__ of the _.txt file_ and put the __name of the title__ into`title`, also put it into `h1` that inside `body`
  
- + `<footer><p class="center">© 2021 OSD600 Seneca</p></footer>`
+ + Personal `footer`
 
 # Index HTML(DEMO)
  
