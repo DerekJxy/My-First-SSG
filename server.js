@@ -7,12 +7,13 @@ let argv = require('yargs/yargs')(process.argv.slice(2))
 .help('help').alias('help', 'h')
 .version('version', version).alias('version', 'v')
 .alias('i', 'input')
-.command("--input", "Convert a text file to HTML file.")
+.command("--input", "filename")
 .options({
   input: {
-    alias: 'i',
-    demand: true,
+    alias: 'input',
+    demandOption: true,
     default: '.',
+    describe: 'convert .txt file to html file',
     type: 'string'
   },
   output: {
