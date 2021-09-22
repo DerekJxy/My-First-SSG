@@ -1,13 +1,16 @@
 # My-First-SSG
+
 A __Static Site Generator__(_SSG_) for __OSD600__
 
 This repo introduces a __JavaScript__ program that convert __.txt file__ into a __HTML file__
 
 
 # Installation 
+
 `npm -i yargs`
 
 # Commands
+
   `server.js --input  Convert a text file to HTML file.`
   
 __For Example:__
@@ -23,7 +26,9 @@ __Or__
 `node server.js -i .\Sherlock-Holmes-Selected-Stories\` 
 
 Which will generate a few of __HTML__ files for the __Sherlock-Holmes-Selected-Stories directory__ into the __/dist__ folder.
+
 # Options
+
 Options:
 
 ``` 
@@ -34,13 +39,17 @@ Options:
   -o, --output                           [string] [required] [default: "./dist"] 
 ```
  
- # Optional Features
+# Optional Features
+ 
  + Get the __title__ of the _.txt file_ and put the __name of the title__ into`<title></title>`, also put it into `<h1></h1>` that inside `<body>`
  
  + `<footer><p class="center">© 2021 OSD600 Seneca</p></footer>`
- # Index HTML(DEMO)
+
+# Index HTML(DEMO)
+ 
  [My-First-SSG-Example](https://derekjxy.github.io/My-First-SSG/)
  
- # License
+# License
+
  [__MIT License__](https://choosealicense.com/licenses/mit/)
  
