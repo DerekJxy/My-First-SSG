@@ -33,10 +33,9 @@ Options:
 
 ``` 
   -h, --help     Show help                                             [boolean]
- 
   -v, --version  Show version number                                   [boolean]
- 
-  -o, --output                           [string] [required] [default: "./dist"] 
+  -o, --output                           [string] [required] [default: "./dist"]
+  -i, --input    convert .txt file to html file              [string] [required]
 ```
  
 # Optional Features
