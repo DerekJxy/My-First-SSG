@@ -24,9 +24,6 @@ let argv = require('yargs/yargs')(process.argv.slice(2))
 })
 .argv;
 
-console.log("argv Input:", argv.input);
-console.log("argv Onput:", argv.output);
-
 // Check ./dist folder
 if(fs.existsSync("./dist")){
     fs.rmdirSync("./dist",{recursive: true} , err=>{
