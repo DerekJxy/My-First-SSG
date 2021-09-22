@@ -11,7 +11,7 @@ This repo introduces a __JavaScript__ program that convert __.txt file__ into a 
 
 # Commands
 
-  `server.js --input  Convert a text file to HTML file.`
+  `server.js --input  'filename'`
   
 __For Example:__
 
