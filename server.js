@@ -1,10 +1,11 @@
 const path = require("path");
+const { version } = require('./package.json');
 let fs = require('fs');
 
 let argv = require('yargs/yargs')(process.argv.slice(2))
 .usage('This is my awesome program\n\nUsage: $0 [options]')
 .help('help').alias('help', 'h')
-.version('version', '1.0.1').alias('version', 'v')
+.version('version', version).alias('version', 'v')
 .alias('i', 'input')
 .command("--input", "Convert a text file to HTML file.")
 .options({
