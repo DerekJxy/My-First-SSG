@@ -35,6 +35,7 @@ Options:
   -h, --help     Show help                                             [boolean]
   -v, --version  Show version number                                   [boolean]
   -o, --output                           [string] [required] [default: "./dist"]
+  -l, --lang     generate the lang attribute  [string] [required] [default: "."]
   -i, --input    convert .txt file to html file              [string] [required]
 ```
  
@@ -43,6 +44,10 @@ Options:
  + Get the __title__ of the _.txt file_ and put the __name of the title__ into`title`, also put it into `h1` that inside `body`
  
  + Personal `footer`
+ 
+ + Convert a `MD` file to a `HTML` file
+
+ + A feature for `language`in `<html>`
 
 # Index HTML(DEMO)
  
