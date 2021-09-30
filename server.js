@@ -21,6 +21,13 @@ let argv = require('yargs/yargs')(process.argv.slice(2))
     demand: true,
     default: './dist',
     type: 'string'
+  },
+  lang: {
+    alias: 'l',
+    demandOption: true,
+    default: '.',
+    describe: 'generate the lang attribute',
+    type: 'string'
   }
 })
 .argv;
@@ -40,10 +47,16 @@ else{
 
 //Define variables
 
-let stats = fs.statSync(argv.input);
+let stats = fs.statSync(argv.input, argv.lang);
 let tempHtml;
 let footer = '<p class="center">© 2021 OSD600 Seneca</p>';
 let fileType ='';
+
+if(argv.lang == '.'){
+  lang = "en-CA";
+}else{
+  lang = argv.lang;
+}
 
 if(stats.isDirectory()){
   fs.readdirSync(argv.input).forEach(file =>{
@@ -76,7 +89,7 @@ if(stats.isDirectory()){
 
         tempHtml =
         `<!doctype html>\n` +
-        `<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>${[0]}</title>\n` +
+        `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${t[0]}</title>\n` +
         `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
         `<body>\n` +
         `<div class = "container">\n` +
@@ -103,7 +116,7 @@ if(stats.isDirectory()){
         
         tempHtml =
         `<!doctype html>\n` +
-        `<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>${fname[0]}</title>\n` +
+        `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${fname[0]}</title>\n` +
         `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
         `<body>\n` +
         `<div class = "container">\n` +
@@ -148,7 +161,7 @@ else{
 
         tempHtml =
         `<!doctype html>\n` +
-        `<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>${[0]}</title>\n` +
+        `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${t[0]}</title>\n` +
         `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
         `<body>\n` +
         `<div class = "container">\n` +
@@ -175,7 +188,7 @@ else{
         
         tempHtml =
         `<!doctype html>\n` +
-        `<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>${fname[0]}</title>\n` +
+        `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${fname[0]}</title>\n` +
         `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
         `<body>\n` +
         `<div class = "container">\n` +
