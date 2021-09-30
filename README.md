@@ -7,7 +7,7 @@ This repo introduces a __JavaScript__ program that convert __.txt file__ into a 
 
 # Installation 
 
-`npm -i yargs`
+`npm i yargs`
 
 # Commands
 
