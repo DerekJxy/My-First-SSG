@@ -90,13 +90,13 @@ if(stats.isDirectory()){
         const html = [];
         contents.forEach(e => {
           if(e.includes('### ')) {
-            html.push(`<h3>${e.replace('###', '')}</h3> <br />`);
+            html.push(`<h3>${e.replace('###', '').replace('---','<hr>')}</h3> <br />`);
           } else if(e.includes('## ')) {
-            html.push(`<h2>${e.replace('##', '')}</h2> <br />`);
+            html.push(`<h2>${e.replace('##', '').replace('---','<hr>')}</h2> <br />`);
           } else if(e.includes('# ')) {
-            html.push(`<h1>${e.replace('#', '')}</h1> <br /><hr /><br />`);
+            html.push(`<h1>${e.replace('#', '').replace('---','<hr>')}</h1> <br /><hr /><br />`);
           } else {
-            html.push(`<p>${e.replace(/\r?\n/, ' ')}</p> <br />`);
+            html.push(`<p>${e.replace(/\r?\n/, ' ').replace('---','<hr>')}</p> <br />`);
           }
         });
         
@@ -162,13 +162,13 @@ else{
         const html = [];
         contents.forEach(e => {
           if(e.includes('### ')) {
-            html.push(`<h3>${e.replace('###', '')}</h3> <br />`);
+            html.push(`<h3>${e.replace('###', '').replace('---','<hr>')}</h3> <br />`);
           } else if(e.includes('## ')) {
-            html.push(`<h2>${e.replace('##', '')}</h2> <br />`);
+            html.push(`<h2>${e.replace('##', '').replace('---','<hr>')}</h2> <br />`);
           } else if(e.includes('# ')) {
-            html.push(`<h1>${e.replace('#', '')}</h1> <br /><hr /><br />`);
+            html.push(`<h1>${e.replace('#', '').replace('---','<hr>')}</h1> <br /><hr /><br />`);
           } else {
-            html.push(`<p>${e.replace(/\r?\n/, ' ')}</p> <br />`);
+            html.push(`<p>${e.replace(/\r?\n/, ' ').replace('---','<hr>')}</p> <br />`);
           }
         });
         
