@@ -46,7 +46,7 @@ else{
 }
 
 //Define variables
-let stats = fs.statSync(argv.input, argv.lang));
+let stats = fs.statSync(argv.input, argv.lang);
 let tempHtml;
 let footer = '<p class="center">© 2021 OSD600 Seneca</p>';
 let fileType ='';
