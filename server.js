@@ -28,9 +28,44 @@ let argv = require('yargs/yargs')(process.argv.slice(2))
     default: '.',
     describe: 'generate the lang attribute',
     type: 'string'
+  },
+  config: {
+    alias: 'c',
+    describe: 'json file to specify options'
   }
 })
 .argv;
+
+//Parse and use config file if present:
+if(argv.config){
+  if(fs.existsSync(argv.config)){
+    if(path.extname(argv.config).toLocaleLowerCase() == '.json'){
+      let fileContents = fs.readFileSync(argv.config);
+
+      try{
+        configData = JSON.parse(fileContents);
+      }
+      catch(err){
+        console.log('Error while parsing JSON: ', err);
+        process.exit(-1);
+      }
+
+      //Assigning options from config to argv (which is being used directly to generate HTML)
+      argv.input = configData.input;
+      argv.output = configData.output ? configData.output : './dist'; //Does not work due to Issue #12
+      argv.lang = configData.lang ? configData.lang : 'en-CA';
+
+    }
+    else {
+      console.log("Config file must be JSON!", path.extname(argv.config));
+      process.exit(-1);
+    }
+  }
+  else {
+    console.log("Config file missing!");
+    process.exit(-1);
+  }
+}
 
 // Check ./dist folder
 if(fs.existsSync("./dist")){
