@@ -52,17 +52,17 @@ if(argv.config){
 
       //Assigning options from config to argv (which is being used directly to generate HTML)
       argv.input = configData.input;
-      argv.output = configData.output ? configData.output : './dist';
+      argv.output = configData.output ? configData.output : './dist'; //Does not work due to Issue #12
       argv.lang = configData.lang ? configData.lang : 'en-CA';
 
     }
     else {
-      console.log("Config file must be JSON!", path.extname(argv.config))
+      console.log("Config file must be JSON!", path.extname(argv.config));
       process.exit(-1);
     }
   }
   else {
-    console.log("Config file missing!")
+    console.log("Config file missing!");
     process.exit(-1);
   }
 }
