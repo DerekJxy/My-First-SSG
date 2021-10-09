@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "fs": "0.0.1-security",
-    "yargs": "^17.1.1"
+    "yargs": "^17.2.1"
   }
 }
