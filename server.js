@@ -51,14 +51,6 @@ else{
   });
 }
 
-//Define variables
-
-let stats = fs.statSync(argv.input, argv.lang);
-let tempHtml;
-let footer = '<p class="center">© 2021 OSD600 Seneca</p>';
-let fileType ='';
-let notValid = false;// new boolean value
-
 if(argv.lang == '.'){
   lang = "en-CA";
 }else{
@@ -67,6 +59,7 @@ if(argv.lang == '.'){
 
 //check for config argument
 if(argv.config != null){ // When it has a config argument, then do this:
+  let notValid = false;
   console.log(`argv.config argument -- '${argv.config}' is not null!`);
   if(fs.existsSync(argv.config)){// contains the json file
     console.log('argv.config is exist!');
@@ -82,8 +75,8 @@ if(argv.config != null){ // When it has a config argument, then do this:
     obj.lang == undefined ? lang = "en-CA" : lang = obj.lang;
     obj.output == undefined ? argv.output = './dist' : argv.output = obj.output;// static output path
     if(!notValid){
-        stats = fs.statSync(obj.input, obj.lang);
-        convert(stats);
+      let filePath = fs.statSync(obj.input, obj.lang);
+      convert(filePath);
     }else{
         console.log(`Input filename is empty in the ${argv.config}! Nothing to convert this time!`);
     }
@@ -95,86 +88,30 @@ if(argv.config != null){ // When it has a config argument, then do this:
     notValid = true;
   }
 }else{ // When it doesn't have a config argument, then do this:
-  console.log(`No config argument detected this time! `)
-  convert(stats);
+  console.log(`No config argument detected this time! `);
+  let filePath = fs.statSync(argv.input, argv.lang);
+  convert(filePath);
 }
 
 // put the convert code into a function
-function convert(stats){
-  if(stats.isDirectory()){
+function convert(filePath){
+  if(filePath.isDirectory()){
     console.log('argv.input is a folder!')
     fs.readdirSync(argv.input).forEach(file =>{
   
       //Display all the files in the directory
       //console.log("File name: ", file);
-      fileType = file.split('.').pop(); 
+      let fileType = file.split('.').pop(); 
   
       //Convert the .txt or .md file into a HTML file
       if(fileType == 'txt' || fileType == 'md'){
       fs.readFile(argv.input + "/"+ file.toString(), 'utf-8', function(err, fullText){
         if(err) return console.log(err);
-        let fname = path.parse(file).name;
+        let fileName = path.parse(file).name;
         //name the file without space
-        let validFname = fname.split(' ').join('');
+        let validFileName = fileName.split(' ').join('');
        // let validFname = fname[0].split(' ').join('');
-  
-        let t = fullText.split(/\r?\n\r?\n/);
-        //console.log("Title is :", t[0]);
-  
-        if(fileType == 'txt'){
-  
-          let t = fullText.split(/\r?\n\r?\n/);
-          console.log("Title is :", t[0]);
-          let content = t.slice(1,t.length);
-          let html = content
-              .map(para =>
-                `<p>${para.replace(/\r?\n/, ' ')}</p> </br>`
-              ).join(' ');
-  
-          tempHtml =
-          `<!doctype html>\n` +
-          `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${t[0]}</title>\n` +
-          `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
-          `<body>\n` +
-          `<div class = "container">\n` +
-          `<h1>${t[0]} </h1>\n` +
-          `${html}` +
-          `</div>\n</body>\n` +
-          `<footer> \n ${footer}\n</footer>\n</html>`;
-        } else if(fileType == 'md'){
-  
-          let contents = fullText.split(/\r?\n\r?\n/);
-          console.log("Title is :", validFname);
-       //   console.log(contents);
-          const html = [];
-          contents.forEach(e => {
-            if(e.includes('### ')) {
-              html.push(`<h3>${e.replace('###', '').replace('---','<hr>')}</h3> <br />`);
-            } else if(e.includes('## ')) {
-              html.push(`<h2>${e.replace('##', '').replace('---','<hr>')}</h2> <br />`);
-            } else if(e.includes('# ')) {
-              html.push(`<h1>${e.replace('#', '').replace('---','<hr>')}</h1> <br /><hr /><br />`);
-            } else {
-              html.push(`<p>${e.replace(/\r?\n/, ' ').replace('---','<hr>')}</p> <br />`);
-            }
-          });
-          
-          tempHtml =
-          `<!doctype html>\n` +
-          `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${fname[0]}</title>\n` +
-          `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
-          `<body>\n` +
-          `<div class = "container">\n` +
-          `${html.join(' ')}` +
-          `</div>\n</body>\n` +
-          `<footer> \n ${footer}\n</footer>\n</html>`;
-        }
-  
-        
-        //Write file
-        fs.writeFile(`./dist/${validFname}.html`, tempHtml, err=>{
-          if(err) throw err;
-        });
+       htmlConversion(fileName,validFileName,fileType,fullText);
        })
     }
   
@@ -184,7 +121,7 @@ function convert(stats){
   
   else{
     console.log('argv.input is not a FOLDER!')
-    fileType = argv.input.split('.').pop(); 
+    let fileType = argv.input.split('.').pop(); 
     //console.log(fileType);
   
     //convert the .txt or .md file into a HTML file
@@ -192,64 +129,10 @@ function convert(stats){
     fs.readFile(argv.input, 'utf8', function(err, fullText){
         if(err) return console.log(err);
   
-        let fname = argv.input.split(".");
+        let fileName = argv.input.split(".");
         //console.log(fname) //[ 'Silver Blaze', 'txt' ]
-        let validFname = fname[0].split(' ').join('');
-        if(fileType == 'txt'){
-  
-          let t = fullText.split(/\r?\n\r?\n/);
-          console.log("Title is :", t[0]);
-          let content = t.slice(1,t.length);
-          let html = content
-              .map(para =>
-                `<p>${para.replace(/\r?\n/, ' ')}</p> </br>`
-              ).join(' ');
-  
-          tempHtml =
-          `<!doctype html>\n` +
-          `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${t[0]}</title>\n` +
-          `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
-          `<body>\n` +
-          `<div class = "container">\n` +
-          `<h1>${t[0]} </h1>\n` +
-          `${html}` +
-          `</div>\n</body>\n` +
-          `<footer> \n ${footer}\n</footer>\n</html>`;
-        } else if(fileType == 'md'){
-  
-          let contents = fullText.split(/\r?\n\r?\n/);
-          console.log("Title is :", validFname);
-          //console.log(contents);
-          const html = [];
-          contents.forEach(e => {
-            if(e.includes('### ')) {
-              html.push(`<h3>${e.replace('###', '').replace('---','<hr>')}</h3> <br />`);
-            } else if(e.includes('## ')) {
-              html.push(`<h2>${e.replace('##', '').replace('---','<hr>')}</h2> <br />`);
-            } else if(e.includes('# ')) {
-              html.push(`<h1>${e.replace('#', '').replace('---','<hr>')}</h1> <br /><hr /><br />`);
-            } else {
-              html.push(`<p>${e.replace(/\r?\n/, ' ').replace('---','<hr>')}</p> <br />`);
-            }
-          });
-          
-          tempHtml =
-          `<!doctype html>\n` +
-          `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${fname[0]}</title>\n` +
-          `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
-          `<body>\n` +
-          `<div class = "container">\n` +
-          `${html.join(' ')}` +
-          `</div>\n</body>\n` +
-          `<footer> \n ${footer}\n</footer>\n</html>`;
-        }
-  
-        //Write file
-        //console.log(validFname);
-        fs.writeFile(`./dist/${validFname}.html`, tempHtml, err=>{
-          if(err) throw err;
-          console.log('The HTML file has been saved to ./dist!');  
-        });
+         let validFileName = fileName[0].split(' ').join('');
+        htmlConversion(fileName,validFileName,fileType, fullText);
       });
     }
   
@@ -258,4 +141,68 @@ function convert(stats){
       console.log(fileType);
     }
   }
+}
+
+
+function mdFileNewFeature(content){
+  const html = [];
+  content.forEach(e => {
+    if(e.includes('### ')) {
+      html.push(`<h3>${e.replace('###', '').replace('---','<hr>')}</h3> <br />`);
+    } else if(e.includes('## ')) {
+      html.push(`<h2>${e.replace('##', '').replace('---','<hr>')}</h2> <br />`);
+    } else if(e.includes('# ')) {
+      html.push(`<h1>${e.replace('#', '').replace('---','<hr>')}</h1> <br /><hr /><br />`);
+    } else {
+      html.push(`<p>${e.replace(/\r?\n/, ' ').replace('---','<hr>')}</p> <br />`);
+    }
+  });
+
+  return html;
+}
+
+function htmlGenerator(lang, title, html, footer){
+  return   typeof(html) == 'object'? `<!doctype html>\n` +
+  `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${title}</title>\n` +
+  `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
+  `<body>\n` +
+  `<div class = "container">\n` +
+   `${html.join(' ')}`+
+  `</div>\n</body>\n` +
+  `<footer> \n ${footer}\n</footer>\n</html>` :
+
+  `<!doctype html>\n` +
+  `<html lang="${lang}">\n<head>\n<meta charset="UTF-8">\n<title>${title}</title>\n` +
+  `<link rel="stylesheet" href="../src/css/style.css">\n</head>\n` +
+  `<body>\n` +
+  `<div class = "container">\n` +
+  `<h1>${title} </h1>\n` +
+  `${html}` +
+  `</div>\n</body>\n` +
+  `<footer> \n ${footer}\n</footer>\n</html>`;
+
+}
+
+function htmlConversion(fileName,validFileName,fileType,fullText){
+  let footer = '<p class="center">© 2021 OSD600 Seneca</p>';
+  if(fileType == 'txt'){
+    let t = fullText.split(/\r?\n\r?\n/);
+    console.log("Title is :", t[0]);
+    let content = t.slice(1,t.length);
+    let html = content
+        .map(para =>
+          `<p>${para.replace(/\r?\n/, ' ')}</p> </br>`
+        ).join(' ');
+    let tempHtml = htmlGenerator(lang, t[0], html, footer);
+    //Write file
+    fs.writeFile(`./dist/${validFileName}.html`, tempHtml, err=>{if(err) throw err;});
+  }else if(fileType == 'md'){
+    let contents = fullText.split(/\r?\n\r?\n/);
+    console.log("Title is :", validFileName);
+    let html = mdFileNewFeature(contents);
+    let tempHtml = htmlGenerator(lang,fileName[0],html, footer);
+    //Write file
+    fs.writeFile(`./dist/${validFileName}.html`, tempHtml, err=>{if(err) throw err;});
+  }
+
 }
