@@ -5,12 +5,19 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "prettier":"prettier --write \"./**/*.js\"",
+    "prettier-check":"prettier --check \"./**/*.js\"",
+    "eslint":"eslint server.js",
+    "eslint-fix":"eslint --fix server.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "fs": "0.0.1-security",
     "yargs": "^17.2.1"
+  },
+  "devDependencies": {
+    "prettier": "2.4.1"
   }
 }

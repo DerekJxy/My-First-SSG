@@ -1,0 +1,9 @@
+# Ignore artifacts:
+/dist/
+/node_modules/
+/Sherlock-Holmes-Selected-Stories/
+/*.json
+*.html
+/package.json
+/package-lock.json
+*.md
