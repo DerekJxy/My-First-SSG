@@ -4,17 +4,20 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --",
+    "test:watch": "jest --watch --",
+    "coverage": "jest --collectCoverage --",
     "start": "node server.js",
-    "prettier":"prettier --write \"./**/*.js\"",
-    "prettier-check":"prettier --check \"./**/*.js\"",
-    "eslint":"eslint server.js",
-    "eslint-fix":"eslint --fix server.js"
+    "prettier": "prettier --write \"./**/*.js\"",
+    "prettier-check": "prettier --check \"./**/*.js\"",
+    "eslint": "eslint server.js",
+    "eslint-fix": "eslint --fix server.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "fs": "0.0.1-security",
+    "jest": "^27.3.1",
     "yargs": "^17.2.1"
   },
   "devDependencies": {

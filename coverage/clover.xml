@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1636595025511" clover="3.2.0">
+  <project timestamp="1636595025511" name="All files">
+    <metrics statements="20" coveredstatements="20" conditionals="26" coveredconditionals="26" methods="1" coveredmethods="1" elements="47" coveredelements="47" complexity="0" loc="20" ncloc="20" packages="1" files="1" classes="1"/>
+    <file name="htmlGenerator.js" path="E:\11\My-First-SSG\htmlGenerator.js">
+      <metrics statements="20" coveredstatements="20" conditionals="26" coveredconditionals="26" methods="1" coveredmethods="1"/>
+      <line num="3" count="11" type="cond" truecount="2" falsecount="0"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="10" type="cond" truecount="2" falsecount="0"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="9" count="9" type="cond" truecount="2" falsecount="0"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="15" count="7" type="cond" truecount="4" falsecount="0"/>
+      <line num="16" count="1" type="stmt"/>
+      <line num="17" count="6" type="cond" truecount="4" falsecount="0"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="21" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="23" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="27" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="47" count="1" type="stmt"/>
+      <line num="51" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
