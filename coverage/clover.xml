@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1636595025511" clover="3.2.0">
-  <project timestamp="1636595025511" name="All files">
+<coverage generated="1636596016219" clover="3.2.0">
+  <project timestamp="1636596016219" name="All files">
     <metrics statements="20" coveredstatements="20" conditionals="26" coveredconditionals="26" methods="1" coveredmethods="1" elements="47" coveredelements="47" complexity="0" loc="20" ncloc="20" packages="1" files="1" classes="1"/>
     <file name="htmlGenerator.js" path="E:\11\My-First-SSG\htmlGenerator.js">
       <metrics statements="20" coveredstatements="20" conditionals="26" coveredconditionals="26" methods="1" coveredmethods="1"/>
