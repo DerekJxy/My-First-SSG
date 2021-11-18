@@ -1,6 +1,6 @@
 function mdFileNewFeature(content) {
   if (!content) {
-    return 'Error! The function is passing an empty Content!';
+    return 'Error! No Content passing';
   } else {
     const html = [];
     content.forEach((e) => {
