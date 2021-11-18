@@ -1,6 +1,7 @@
 const path = require('path');
 const { version } = require('./package.json');
 const { htmlGenerator } = require('./htmlGenerator');
+const { mdFileNewFeature } = require('./mdFileNewFeature');
 let fs = require('fs');
 
 let argv = require('yargs/yargs')(process.argv.slice(2))
@@ -150,32 +151,32 @@ function convert(filePath) {
   }
 }
 
-function mdFileNewFeature(content) {
-  const html = [];
-  content.forEach((e) => {
-    if (e.includes('### ')) {
-      html.push(
-        `<h3>${e.replace('###', '').replace('---', '<hr>')}</h3> <br />`
-      );
-    } else if (e.includes('## ')) {
-      html.push(
-        `<h2>${e.replace('##', '').replace('---', '<hr>')}</h2> <br />`
-      );
-    } else if (e.includes('# ')) {
-      html.push(
-        `<h1>${e
-          .replace('#', '')
-          .replace('---', '<hr>')}</h1> <br /><hr /><br />`
-      );
-    } else {
-      html.push(
-        `<p>${e.replace(/\r?\n/, ' ').replace('---', '<hr>')}</p> <br />`
-      );
-    }
-  });
+// function mdFileNewFeature(content) {
+//   const html = [];
+//   content.forEach((e) => {
+//     if (e.includes('### ')) {
+//       html.push(
+//         `<h3>${e.replace('###', '').replace('---', '<hr>')}</h3> <br />`
+//       );
+//     } else if (e.includes('## ')) {
+//       html.push(
+//         `<h2>${e.replace('##', '').replace('---', '<hr>')}</h2> <br />`
+//       );
+//     } else if (e.includes('# ')) {
+//       html.push(
+//         `<h1>${e
+//           .replace('#', '')
+//           .replace('---', '<hr>')}</h1> <br /><hr /><br />`
+//       );
+//     } else {
+//       html.push(
+//         `<p>${e.replace(/\r?\n/, ' ').replace('---', '<hr>')}</p> <br />`
+//       );
+//     }
+//   });
 
-  return html;
-}
+//   return html;
+// }
 
 // function htmlGenerator(lang, title, html, footer) {
 //   return typeof html == 'object'

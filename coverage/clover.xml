@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1636596016219" clover="3.2.0">
-  <project timestamp="1636596016219" name="All files">
-    <metrics statements="20" coveredstatements="20" conditionals="26" coveredconditionals="26" methods="1" coveredmethods="1" elements="47" coveredelements="47" complexity="0" loc="20" ncloc="20" packages="1" files="1" classes="1"/>
+<coverage generated="1637266980386" clover="3.2.0">
+  <project timestamp="1637266980386" name="All files">
+    <metrics statements="33" coveredstatements="33" conditionals="34" coveredconditionals="34" methods="3" coveredmethods="3" elements="70" coveredelements="70" complexity="0" loc="33" ncloc="33" packages="1" files="2" classes="2"/>
     <file name="htmlGenerator.js" path="E:\11\My-First-SSG\htmlGenerator.js">
       <metrics statements="20" coveredstatements="20" conditionals="26" coveredconditionals="26" methods="1" coveredmethods="1"/>
       <line num="3" count="11" type="cond" truecount="2" falsecount="0"/>
@@ -24,6 +24,22 @@
       <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
       <line num="47" count="1" type="stmt"/>
       <line num="51" count="1" type="stmt"/>
+    </file>
+    <file name="mdFileNewFeature.js" path="E:\11\My-First-SSG\mdFileNewFeature.js">
+      <metrics statements="13" coveredstatements="13" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+      <line num="2" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="4" type="stmt"/>
+      <line num="6" count="4" type="stmt"/>
+      <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="11" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="15" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="16" count="1" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="28" count="4" type="stmt"/>
+      <line num="32" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
