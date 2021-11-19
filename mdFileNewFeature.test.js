@@ -38,4 +38,12 @@ describe('mdFileNewFeature', () => {
     let temp = 'Error! The function is passing an empty Content!';
     assert.deepEqual(mdFileNewFeature(), temp);
   });
+
+  it('test6', () => {
+    let tempString = `---`;
+    let content = tempString.split(/\r?\n\r?\n/);
+
+    let temp = ['<p><hr></p> <br />'];
+    assert.deepEqual(mdFileNewFeature(content), temp);
+  });
 });
